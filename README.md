@@ -1,1 +1,3 @@
-# react-native-picker
+# react-native-pickr
+
+

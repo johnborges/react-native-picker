@@ -1,0 +1,27 @@
+{
+  "name": "react-native-pickr",
+  "version": "1.0.0",
+  "description": "A cross platform native picker for both iOS and Android.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnborges/react-native-pickr.git"
+  },
+  "keywords": [
+    "react-native",
+    "picker"
+  ],
+  "author": "@johnborges",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/johnborges/react-native-pickr/issues"
+  },
+  "homepage": "https://github.com/johnborges/react-native-pickr#readme",
+  "peerDependencies": {
+    "react": "16.8.3",
+    "react-native": "0.59.3"
+  }
+}
