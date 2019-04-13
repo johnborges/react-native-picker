@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
-import { Modal, StyleSheet, View, Text, Button, PickerIOS, TouchableWithoutFeedback } from 'react-native'
-//import PropTypes from 'prop-types';
+import { 
+  Modal,
+  StyleSheet,
+  View, Text, Button,
+  PickerIOS, Picker,
+  TouchableWithoutFeedback,
+  SafeAreaView,
+  Platform,
+} from 'react-native'
 
 export default class Pickr extends Component {
 
@@ -9,8 +16,7 @@ export default class Pickr extends Component {
 
     this.state = {
       visible: false,
-      selectedIndex: 0,
-      selectedValue: 'New Jersey'
+      selectedValue: 'Vermont' // string or int
     }
 
     this._toggleModal = this._toggleModal.bind(this);
@@ -21,27 +27,40 @@ export default class Pickr extends Component {
   }
 
   render() {
-    const { options } = this.props;
-    console.log(this.state)
-    return (
-      <View>
-        <TouchableWithoutFeedback onPress={this._toggleModal}>
-          <Text>{this.state.selectedValue}</Text>
-        </TouchableWithoutFeedback>
-        <Modal animationType="fade" transparent={true} visible={this.state.visible}>
-          <View style={styles.modalContainer}>
-            <View style={styles.modal}>
-              <Button style={styles.doneBtn} title="Done" onPress={this._toggleModal} />
-              <PickerIOS selectedValue={this.state.selectedValue} onValueChange={(value, position) => {this.setState({selectedIndex: position, selectedValue: value})}}>
-                {options.map((item, index) => {
-                  return (<PickerIOS.Item key={index} label={item} value={item}/>)
-                })}
-              </PickerIOS>
-            </View>
-          </View>
-        </Modal>
-      </View>
-    )
+    const { options, selectedOption, onChange } = this.props;
+
+    if (Platform.OS === 'ios') {
+      return (
+        <View>
+          <TouchableWithoutFeedback onPress={this._toggleModal}>
+            <Text>{selectedOption}</Text>
+          </TouchableWithoutFeedback>
+          <Modal animationType="fade" transparent={true} visible={this.state.visible}>
+            <SafeAreaView style={styles.modalContainer}>
+              <View style={styles.modal}>
+                <View style={styles.doneBtnContainer}><Button title="Done" onPress={this._toggleModal} /></View>
+                <PickerIOS selectedValue={selectedOption} onValueChange={(value) => onChange(value)} >
+                  {options.map((item, index) => {
+                    return (<PickerIOS.Item key={index} label={item} value={item}/>)
+                  })}
+                </PickerIOS>
+              </View>
+            </SafeAreaView>
+          </Modal>
+        </View>
+      )
+    }
+    else if (Platform.OS === 'android') {
+      return (
+        <Picker 
+          selectedValue={selectedOption}
+          onValueChange={(value) => onChange(value)}>
+          {options.map((item, index) => {
+            return (<Picker.Item key={index} label={item} value={item}/>)
+          })}
+        </Picker>
+      )
+    }
   }
 }
 
@@ -55,8 +74,9 @@ const styles = StyleSheet.create({
   modal: {
     backgroundColor: '#E5E4E2',
   },
-  doneBtn: {
-    alignSelf: 'flex-start'
+  doneBtnContainer: {
+    alignSelf: 'flex-end',
+    width: 75,
   }
 });
 
