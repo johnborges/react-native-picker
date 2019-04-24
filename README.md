@@ -1,5 +1,7 @@
 # react-native-pickr
 
+[![npm version](https://badge.fury.io/js/react-native-pickr.svg)](https://badge.fury.io/js/react-native-pickr)
+
 Renders a native picker component for iOS and Android. On iOS, the picker renders within a transparent `Modal` component fixed at the bottom of the screen. Androind uses the OOB `Picker`.
 
 ![ios](http://johnborg.es/assets/dropdown_android.gif "ios picker")

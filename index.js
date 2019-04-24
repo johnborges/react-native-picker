@@ -16,7 +16,7 @@ export default class Pickr extends Component {
 
     this.state = {
       visible: false,
-      selectedValue: 'Vermont' // string or int
+      selectedValue: this.props.selectedOption,
     }
 
     this._toggleModal = this._toggleModal.bind(this);
