@@ -16,7 +16,6 @@ export default class Pickr extends Component {
 
     this.state = {
       visible: false,
-      selectedValue: this.props.selectedOption,
     }
 
     this._toggleModal = this._toggleModal.bind(this);
@@ -41,7 +40,7 @@ export default class Pickr extends Component {
                 <View style={styles.doneBtnContainer}><Button title="Done" onPress={this._toggleModal} /></View>
                 <PickerIOS selectedValue={selectedOption} onValueChange={(value) => onChange(value)} >
                   {options.map((item, index) => {
-                    return (<PickerIOS.Item key={index} label={item} value={item}/>)
+                    return (<PickerIOS.Item key={index} label={item.label} value={item.value}/>)
                   })}
                 </PickerIOS>
               </View>
@@ -56,7 +55,7 @@ export default class Pickr extends Component {
           selectedValue={selectedOption}
           onValueChange={(value) => onChange(value)}>
           {options.map((item, index) => {
-            return (<Picker.Item key={index} label={item} value={item}/>)
+            return (<Picker.Item key={index} label={item.label} value={item.value}/>)
           })}
         </Picker>
       )

@@ -14,7 +14,8 @@ Renders a native picker component for iOS and Android. On iOS, the picker render
 ## Props
 
 ### `options`
-Options that will populate the dropdown. Must be an array of strings or integers.
+Options that will populate the dropdown. Must be an array of objects in the format:
+`{ label: <string_label>, value: <string | integer> }`
 
 ### `selectedOption`
 Value matching one of the items in options. Can be a string or an integer.
@@ -45,7 +46,7 @@ export default class App extends Component {
   render() {
     return (
       <Pickr 
-        options={['Vermont', 'Texas', 'New Jersey']} 
+        options={[{label: 'New Jersey', value: 'NJ'}, {label: 'Pennsylvania', value: 'PA'}, {label: 'West Virginia', value: 'WV'}]} 
         selectedOption={this.state.selectedUsState} 
         onChange={this._onChange}
       />
