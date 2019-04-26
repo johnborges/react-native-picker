@@ -34,7 +34,7 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedUsState: 'Vermont',
+      selectedUsState: 'NJ',
     }
     this._onChange = this._onChange.bind(this);
   }
